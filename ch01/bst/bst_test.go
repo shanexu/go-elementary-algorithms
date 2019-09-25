@@ -35,4 +35,10 @@ func TestInsert(t *testing.T) {
 	a = nil
 	PostOrderWalk(r, walkHandler)
 	assert.EqualValues(t, []int{2, 1, 3, 7, 9, 14, 10, 16, 8, 4}, a)
+
+	min := Min(r)
+	assert.Equal(t, 1, min)
+
+	max := Max(r)
+	assert.Equal(t, 16, max)
 }

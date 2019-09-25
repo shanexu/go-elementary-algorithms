@@ -50,13 +50,36 @@ func InOrderWalk(t *Node, f WalkHandler) {
 	InOrderWalk(t.Right, f)
 }
 
-func PostOrderWalk(t *Node, f WalkHandler){
+func PostOrderWalk(t *Node, f WalkHandler) {
 	if t == nil {
 		return
 	}
 	PostOrderWalk(t.Left, f)
 	PostOrderWalk(t.Right, f)
 	f(t.Key)
+}
+
+func Search(t *Node, x int) *Node {
+	for t != nil && x != t.Key {
+		if x < t.Key {
+			t = t.Left
+		} else {
+			t = t.Right
+		}
+	}
+	return t
+}
+
+func Min(t *Node) int {
+	for ; t.Left != nil; t = t.Left {
+	}
+	return t.Key
+}
+
+func Max(t *Node) int {
+	for ; t.Right != nil; t = t.Right {
+	}
+	return t.Key
 }
 
 func CreateLeaf(k int) *Node {
@@ -67,4 +90,3 @@ func CreateLeaf(k int) *Node {
 		Parent: nil,
 	}
 }
-
