@@ -30,6 +30,35 @@ func Insert(t *Node, k int) *Node {
 	return root
 }
 
+type WalkHandler func(k int)
+
+func PreOrderWalk(t *Node, f WalkHandler) {
+	if t == nil {
+		return
+	}
+	f(t.Key)
+	PreOrderWalk(t.Left, f)
+	PreOrderWalk(t.Right, f)
+}
+
+func InOrderWalk(t *Node, f WalkHandler) {
+	if t == nil {
+		return
+	}
+	InOrderWalk(t.Left, f)
+	f(t.Key)
+	InOrderWalk(t.Right, f)
+}
+
+func PostOrderWalk(t *Node, f WalkHandler){
+	if t == nil {
+		return
+	}
+	PostOrderWalk(t.Left, f)
+	PostOrderWalk(t.Right, f)
+	f(t.Key)
+}
+
 func CreateLeaf(k int) *Node {
 	return &Node{
 		Key:    k,
@@ -38,3 +67,4 @@ func CreateLeaf(k int) *Node {
 		Parent: nil,
 	}
 }
+
