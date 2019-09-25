@@ -70,16 +70,40 @@ func Search(t *Node, x int) *Node {
 	return t
 }
 
-func Min(t *Node) int {
+func Min(t *Node) *Node {
 	for ; t.Left != nil; t = t.Left {
 	}
-	return t.Key
+	return t
 }
 
-func Max(t *Node) int {
+func Max(t *Node) *Node {
 	for ; t.Right != nil; t = t.Right {
 	}
-	return t.Key
+	return t
+}
+
+func Succ(x *Node) *Node {
+	if x.Right != nil {
+		return Min(x.Right)
+	}
+	p := x.Parent
+	for p != nil && x == p.Right {
+		x = p
+		p = x.Parent
+	}
+	return p
+}
+
+func Pred(x *Node) *Node {
+	if x.Left != nil {
+		return Max(x.Left)
+	}
+	p := x.Parent
+	for p != nil && x == p.Left {
+		x = p
+		p = x.Parent
+	}
+	return p
 }
 
 func CreateLeaf(k int) *Node {
