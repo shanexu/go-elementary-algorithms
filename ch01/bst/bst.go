@@ -128,6 +128,38 @@ func ReConstructFromPreOrderAndInOrder(preOrder []int, inOrder []int) *Node {
 	return reConstructFromPreOrderAndInOrder(preOrder, inOrder, nil)
 }
 
+func Delete(t *Node, x *Node) *Node {
+	r := t
+	p := x.Parent
+	x0 := x
+
+	if x.Left == nil {
+		x = x.Right
+	} else if x.Right == nil {
+		x = x.Left
+	} else {
+		y := Min(x.Right)
+		x.Key = y.Key
+		if y.Parent != x {
+			y.Parent.Left = y.Right
+		}
+		return r
+	}
+	if x != nil {
+		x.Parent = p
+	}
+	if p == nil {
+		r = x
+	} else {
+		if p.Left == x0 {
+			p.Left = x
+		} else {
+			p.Right = x
+		}
+	}
+	return r
+}
+
 func CreateLeaf(k int) *Node {
 	return &Node{
 		Key:    k,
