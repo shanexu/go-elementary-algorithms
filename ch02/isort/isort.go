@@ -34,3 +34,24 @@ func ISortB(xs []int) {
 		xs[p] = x
 	}
 }
+
+type Key = int
+
+type Node struct {
+	Key  Key
+	Next *Node
+}
+
+func Insert(lst *Node, x *Node) *Node {
+	var p *Node
+	head := lst
+	for ; lst != nil && x.Key > lst.Key; lst = lst.Next {
+		p = lst
+	}
+	x.Next = lst
+	if p == nil {
+		return x
+	}
+	p.Next = x
+	return head
+}
