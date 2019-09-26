@@ -142,6 +142,48 @@ func Delete(t *Node, x *Node) *Node {
 		x.Key = y.Key
 		if y.Parent != x {
 			y.Parent.Left = y.Right
+		} else {
+			x.Right = y.Right
+		}
+		if y.Right != nil {
+			y.Right.Parent = y.Parent
+		}
+		return r
+	}
+	if x != nil {
+		x.Parent = p
+	}
+	if p == nil {
+		r = x
+	} else {
+		if p.Left == x0 {
+			p.Left = x
+		} else {
+			p.Right = x
+		}
+	}
+	return r
+}
+
+func DeleteL(t *Node, x *Node) *Node {
+	r := t
+	p := x.Parent
+	x0 := x
+
+	if x.Left == nil {
+		x = x.Right
+	} else if x.Right == nil {
+		x = x.Left
+	} else {
+		y := Max(x.Left)
+		x.Key = y.Key
+		if y.Parent != x {
+			y.Parent.Right = y.Left
+		} else {
+			x.Left = y.Left
+		}
+		if y.Left != nil {
+			y.Left.Parent = y.Parent
 		}
 		return r
 	}

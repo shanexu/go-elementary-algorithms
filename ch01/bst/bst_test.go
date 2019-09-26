@@ -89,4 +89,34 @@ func TestInsert(t *testing.T) {
 	a = nil
 	InOrderWalk(x, walkHandler)
 	assert.Equal(t, []int{1, 2, 3, 4, 7, 9, 10, 14, 16}, a)
+
+	x = ReConstructFromPreOrderAndInOrder(preOrder, inOrder)
+	x = Delete(x, Search(x, 10))
+	a = nil
+	InOrderWalk(x, walkHandler)
+	assert.Equal(t, []int{1, 2, 3, 4, 7, 8, 9, 14, 16}, a)
+
+	x = ReConstructFromPreOrderAndInOrder(preOrder, inOrder)
+	x = DeleteL(x, x)
+	a = nil
+	InOrderWalk(x, walkHandler)
+	assert.Equal(t, []int{1, 2, 3, 7, 8, 9, 10, 14, 16}, a)
+
+	x = ReConstructFromPreOrderAndInOrder(preOrder, inOrder)
+	x = DeleteL(x, Search(x, 2))
+	a = nil
+	InOrderWalk(x, walkHandler)
+	assert.Equal(t, []int{1, 3, 4, 7, 8, 9, 10, 14, 16}, a)
+
+	x = ReConstructFromPreOrderAndInOrder(preOrder, inOrder)
+	x = DeleteL(x, Search(x, 1))
+	a = nil
+	InOrderWalk(x, walkHandler)
+	assert.Equal(t, []int{2, 3, 4, 7, 8, 9, 10, 14, 16}, a)
+
+	x = ReConstructFromPreOrderAndInOrder(preOrder, inOrder)
+	x = DeleteL(x, Search(x, 8))
+	a = nil
+	InOrderWalk(x, walkHandler)
+	assert.Equal(t, []int{1, 2, 3, 4, 7, 9, 10, 14, 16}, a)
 }
