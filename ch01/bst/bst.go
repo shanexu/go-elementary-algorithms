@@ -106,6 +106,24 @@ func Pred(x *Node) *Node {
 	return p
 }
 
+func ReConstructFromPreOrderAndInOrder(preOrder []int, inOrder []int) *Node {
+	if len(preOrder) == 0 {
+		return nil
+	}
+	rootKey := preOrder[0]
+	i := 0
+	for ; i < len(inOrder); i++ {
+		if inOrder[i] == rootKey {
+			break
+		}
+	}
+	x := CreateLeaf(rootKey)
+	x.Left = ReConstructFromPreOrderAndInOrder(preOrder[1:i+1], inOrder[0:i])
+	x.Right = ReConstructFromPreOrderAndInOrder(preOrder[i+1:], inOrder[i+1:])
+
+	return x
+}
+
 func CreateLeaf(k int) *Node {
 	return &Node{
 		Key:    k,

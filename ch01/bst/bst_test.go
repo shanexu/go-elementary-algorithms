@@ -24,17 +24,20 @@ func TestInsert(t *testing.T) {
 		a = append(a, k)
 	}
 
+	preOrder := []int{4, 3, 1, 2, 8, 7, 16, 10, 9, 14}
 	a = nil
 	PreOrderWalk(r, walkHandler)
-	assert.Equal(t, []int{4, 3, 1, 2, 8, 7, 16, 10, 9, 14}, a)
+	assert.Equal(t, preOrder, a)
 
+	inOrder := []int{1, 2, 3, 4, 7, 8, 9, 10, 14, 16}
 	a = nil
 	InOrderWalk(r, walkHandler)
-	assert.Equal(t, []int{1, 2, 3, 4, 7, 8, 9, 10, 14, 16}, a)
+	assert.Equal(t, inOrder, a)
 
+	postOrder := []int{2, 1, 3, 7, 9, 14, 10, 16, 8, 4}
 	a = nil
 	PostOrderWalk(r, walkHandler)
-	assert.Equal(t, []int{2, 1, 3, 7, 9, 14, 10, 16, 8, 4}, a)
+	assert.Equal(t, postOrder, a)
 
 	min := Min(r)
 	assert.Equal(t, 1, min.Key)
@@ -57,4 +60,9 @@ func TestInsert(t *testing.T) {
 	n = Search(r, 9)
 	n = Pred(n)
 	assert.Equal(t, 8, n.Key)
+
+	x := ReConstructFromPreOrderAndInOrder(preOrder, inOrder)
+	a = nil
+	PostOrderWalk(x, walkHandler)
+	assert.Equal(t, postOrder, a)
 }
