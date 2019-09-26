@@ -1,10 +1,10 @@
 package bst
 
 import (
-	. "github.com/shanexu/go-elementary-algorithms/ch01/tree"
+	. "github.com/shanexu/go-elementary-algorithms/tree"
 )
 
-func Insert(t *Node, k int) *Node {
+func Insert(t *Node, k Key) *Node {
 	root := t
 	x := CreateLeaf(k)
 	var parent *Node
@@ -29,8 +29,6 @@ func Insert(t *Node, k int) *Node {
 	}
 	return root
 }
-
-type WalkHandler func(k int)
 
 func PreOrderWalk(t *Node, f WalkHandler) {
 	if t == nil {
@@ -59,7 +57,7 @@ func PostOrderWalk(t *Node, f WalkHandler) {
 	f(t.Key)
 }
 
-func Search(t *Node, x int) *Node {
+func Search(t *Node, x Key) *Node {
 	for t != nil && x != t.Key {
 		if x < t.Key {
 			t = t.Left
@@ -106,7 +104,7 @@ func Pred(x *Node) *Node {
 	return p
 }
 
-func reConstructFromPreOrderAndInOrder(preOrder []int, inOrder []int, parent *Node) *Node {
+func reConstructFromPreOrderAndInOrder(preOrder []Key, inOrder []Key, parent *Node) *Node {
 	if len(preOrder) == 0 {
 		return nil
 	}
@@ -124,7 +122,7 @@ func reConstructFromPreOrderAndInOrder(preOrder []int, inOrder []int, parent *No
 	return x
 }
 
-func ReConstructFromPreOrderAndInOrder(preOrder []int, inOrder []int) *Node {
+func ReConstructFromPreOrderAndInOrder(preOrder []Key, inOrder []Key) *Node {
 	return reConstructFromPreOrderAndInOrder(preOrder, inOrder, nil)
 }
 
@@ -202,7 +200,7 @@ func DeleteL(t *Node, x *Node) *Node {
 	return r
 }
 
-func CreateLeaf(k int) *Node {
+func CreateLeaf(k Key) *Node {
 	return &Node{
 		Key:    k,
 		Left:   nil,

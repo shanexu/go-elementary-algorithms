@@ -6,35 +6,35 @@ import (
 	"github.com/stretchr/testify/assert"
 
 	. "github.com/shanexu/go-elementary-algorithms/ch01/bst"
-	. "github.com/shanexu/go-elementary-algorithms/ch01/tree"
+	. "github.com/shanexu/go-elementary-algorithms/tree"
 )
 
 func TestInsert(t *testing.T) {
 	var r *Node
 
-	ks := []int{4, 3, 1, 2, 8, 7, 16, 10, 9, 14}
+	ks := []Key{4, 3, 1, 2, 8, 7, 16, 10, 9, 14}
 
 	for _, k := range ks {
 		r = Insert(r, k)
 	}
 
-	var a []int
+	var a []Key
 
-	var walkHandler WalkHandler = func(k int) {
+	var walkHandler WalkHandler = func(k Key) {
 		a = append(a, k)
 	}
 
-	preOrder := []int{4, 3, 1, 2, 8, 7, 16, 10, 9, 14}
+	preOrder := []Key{4, 3, 1, 2, 8, 7, 16, 10, 9, 14}
 	a = nil
 	PreOrderWalk(r, walkHandler)
 	assert.Equal(t, preOrder, a)
 
-	inOrder := []int{1, 2, 3, 4, 7, 8, 9, 10, 14, 16}
+	inOrder := []Key{1, 2, 3, 4, 7, 8, 9, 10, 14, 16}
 	a = nil
 	InOrderWalk(r, walkHandler)
 	assert.Equal(t, inOrder, a)
 
-	postOrder := []int{2, 1, 3, 7, 9, 14, 10, 16, 8, 4}
+	postOrder := []Key{2, 1, 3, 7, 9, 14, 10, 16, 8, 4}
 	a = nil
 	PostOrderWalk(r, walkHandler)
 	assert.Equal(t, postOrder, a)
@@ -70,53 +70,53 @@ func TestInsert(t *testing.T) {
 	x = Delete(x, x)
 	a = nil
 	InOrderWalk(x, walkHandler)
-	assert.Equal(t, []int{1, 2, 3, 7, 8, 9, 10, 14, 16}, a)
+	assert.Equal(t, []Key{1, 2, 3, 7, 8, 9, 10, 14, 16}, a)
 
 	x = ReConstructFromPreOrderAndInOrder(preOrder, inOrder)
 	x = Delete(x, Search(x, 2))
 	a = nil
 	InOrderWalk(x, walkHandler)
-	assert.Equal(t, []int{1, 3, 4, 7, 8, 9, 10, 14, 16}, a)
+	assert.Equal(t, []Key{1, 3, 4, 7, 8, 9, 10, 14, 16}, a)
 
 	x = ReConstructFromPreOrderAndInOrder(preOrder, inOrder)
 	x = Delete(x, Search(x, 1))
 	a = nil
 	InOrderWalk(x, walkHandler)
-	assert.Equal(t, []int{2, 3, 4, 7, 8, 9, 10, 14, 16}, a)
+	assert.Equal(t, []Key{2, 3, 4, 7, 8, 9, 10, 14, 16}, a)
 
 	x = ReConstructFromPreOrderAndInOrder(preOrder, inOrder)
 	x = Delete(x, Search(x, 8))
 	a = nil
 	InOrderWalk(x, walkHandler)
-	assert.Equal(t, []int{1, 2, 3, 4, 7, 9, 10, 14, 16}, a)
+	assert.Equal(t, []Key{1, 2, 3, 4, 7, 9, 10, 14, 16}, a)
 
 	x = ReConstructFromPreOrderAndInOrder(preOrder, inOrder)
 	x = Delete(x, Search(x, 10))
 	a = nil
 	InOrderWalk(x, walkHandler)
-	assert.Equal(t, []int{1, 2, 3, 4, 7, 8, 9, 14, 16}, a)
+	assert.Equal(t, []Key{1, 2, 3, 4, 7, 8, 9, 14, 16}, a)
 
 	x = ReConstructFromPreOrderAndInOrder(preOrder, inOrder)
 	x = DeleteL(x, x)
 	a = nil
 	InOrderWalk(x, walkHandler)
-	assert.Equal(t, []int{1, 2, 3, 7, 8, 9, 10, 14, 16}, a)
+	assert.Equal(t, []Key{1, 2, 3, 7, 8, 9, 10, 14, 16}, a)
 
 	x = ReConstructFromPreOrderAndInOrder(preOrder, inOrder)
 	x = DeleteL(x, Search(x, 2))
 	a = nil
 	InOrderWalk(x, walkHandler)
-	assert.Equal(t, []int{1, 3, 4, 7, 8, 9, 10, 14, 16}, a)
+	assert.Equal(t, []Key{1, 3, 4, 7, 8, 9, 10, 14, 16}, a)
 
 	x = ReConstructFromPreOrderAndInOrder(preOrder, inOrder)
 	x = DeleteL(x, Search(x, 1))
 	a = nil
 	InOrderWalk(x, walkHandler)
-	assert.Equal(t, []int{2, 3, 4, 7, 8, 9, 10, 14, 16}, a)
+	assert.Equal(t, []Key{2, 3, 4, 7, 8, 9, 10, 14, 16}, a)
 
 	x = ReConstructFromPreOrderAndInOrder(preOrder, inOrder)
 	x = DeleteL(x, Search(x, 8))
 	a = nil
 	InOrderWalk(x, walkHandler)
-	assert.Equal(t, []int{1, 2, 3, 4, 7, 9, 10, 14, 16}, a)
+	assert.Equal(t, []Key{1, 2, 3, 4, 7, 9, 10, 14, 16}, a)
 }

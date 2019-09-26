@@ -1,8 +1,9 @@
 package isort
 
 import (
-	"reflect"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestISort(t *testing.T) {
@@ -37,9 +38,8 @@ func TestISort(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if ISort(tt.args.xs); !reflect.DeepEqual(tt.args.xs, tt.want) {
-				t.Errorf("ISort() = %v, want %v", tt.args.xs, tt.want)
-			}
+			ISortB(tt.args.xs)
+			assert.Equal(t, tt.want, tt.args.xs)
 		})
 	}
 }
@@ -126,9 +126,8 @@ func TestISortB(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if ISortB(tt.args.xs); !reflect.DeepEqual(tt.args.xs, tt.want) {
-				t.Errorf("ISort() = %v, want %v", tt.args.xs, tt.want)
-			}
+			ISortB(tt.args.xs)
+			assert.Equal(t, tt.want, tt.args.xs)
 		})
 	}
 }

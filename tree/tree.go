@@ -1,10 +1,12 @@
 package tree
 
+type Key = int
+
 type Node struct {
-	Key    int
+	Key    Key
 	Left   *Node
 	Right  *Node
 	Parent *Node
 }
 
-
+type WalkHandler func(k Key)
