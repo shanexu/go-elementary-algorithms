@@ -9,9 +9,9 @@ func LeftRotate(t *Node, x *Node) *Node {
 	b := y.Left
 	p := x.Parent
 	x.Right = b
-	y.Left = x
 	b.Parent = x
 	x.Parent = y
+	y.Left = x
 	y.Parent = p
 	if p == nil {
 		return y

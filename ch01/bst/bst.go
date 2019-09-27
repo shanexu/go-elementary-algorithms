@@ -30,33 +30,6 @@ func Insert(t *Node, k Key) *Node {
 	return root
 }
 
-func PreOrderWalk(t *Node, f WalkHandler) {
-	if t == nil {
-		return
-	}
-	f(t.Key)
-	PreOrderWalk(t.Left, f)
-	PreOrderWalk(t.Right, f)
-}
-
-func InOrderWalk(t *Node, f WalkHandler) {
-	if t == nil {
-		return
-	}
-	InOrderWalk(t.Left, f)
-	f(t.Key)
-	InOrderWalk(t.Right, f)
-}
-
-func PostOrderWalk(t *Node, f WalkHandler) {
-	if t == nil {
-		return
-	}
-	PostOrderWalk(t.Left, f)
-	PostOrderWalk(t.Right, f)
-	f(t.Key)
-}
-
 func Search(t *Node, x Key) *Node {
 	for t != nil && x != t.Key {
 		if x < t.Key {
