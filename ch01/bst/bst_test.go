@@ -8,7 +8,7 @@ import (
 	. "github.com/shanexu/go-elementary-algorithms/tree"
 )
 
-func TestInsert(t *testing.T) {
+func TestBST(t *testing.T) {
 	var r *Node
 
 	ks := []Key{4, 3, 1, 2, 8, 7, 16, 10, 9, 14}
