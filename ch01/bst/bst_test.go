@@ -1,11 +1,10 @@
-package bst_test
+package bst
 
 import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 
-	. "github.com/shanexu/go-elementary-algorithms/ch01/bst"
 	. "github.com/shanexu/go-elementary-algorithms/tree"
 )
 
