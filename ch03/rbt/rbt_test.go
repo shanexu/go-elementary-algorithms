@@ -9,8 +9,8 @@ import (
 	. "github.com/shanexu/go-elementary-algorithms/tree"
 )
 
-func NewTree(ks []Key) *Node {
-	var r *Node
+func NewTree(ks []Key) Node {
+	var r Node
 	for _, k := range ks {
 		r = bst.Insert(r, k)
 	}

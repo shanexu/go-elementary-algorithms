@@ -4,12 +4,12 @@ import (
 	. "github.com/shanexu/go-elementary-algorithms/tree"
 )
 
-func LeftRotate(t, x *Node) *Node {
-	p := x.Parent
-	y := x.Right
-	a := x.Left
-	b := y.Left
-	c := y.Right
+func LeftRotate(t, x Node) Node {
+	p := x.Parent()
+	y := x.Right()
+	a := x.Left()
+	b := y.Left()
+	c := y.Right()
 	Replace(x, y)
 	SetChildren(x, a, b)
 	SetChildren(y, x, c)
@@ -19,12 +19,12 @@ func LeftRotate(t, x *Node) *Node {
 	return t
 }
 
-func RightRotate(t, y *Node) *Node {
-	p := y.Parent
-	x := y.Left
-	a := x.Left
-	b := x.Right
-	c := y.Right
+func RightRotate(t, y Node) Node {
+	p := y.Parent()
+	x := y.Left()
+	a := x.Left()
+	b := x.Right()
+	c := y.Right()
 	Replace(y, x)
 	SetChildren(y, b, c)
 	SetChildren(x, a, y)
@@ -34,35 +34,35 @@ func RightRotate(t, y *Node) *Node {
 	return t
 }
 
-func Replace(x, y *Node) {
-	if x.Parent == nil {
+func Replace(x, y Node) {
+	if x.Parent() == nil {
 		if y != nil {
-			y.Parent = nil
+			y.SetParent(nil)
 		}
-	} else if x.Parent.Left == x {
-		SetLeft(x.Parent, y)
+	} else if x.Parent().Left() == x {
+		SetLeft(x.Parent(), y)
 	} else {
-		SetRight(x.Parent, y)
+		SetRight(x.Parent(), y)
 	}
-	x.Parent = nil
+	x.SetParent(nil)
 }
 
-func SetChildren(x, l, r *Node) {
+func SetChildren(x, l, r Node) {
 	SetLeft(x, l)
 	SetRight(x, r)
 }
 
-func SetLeft(x, y *Node) {
-	x.Left = y
+func SetLeft(x, y Node) {
+	x.SetLeft(y)
 	if y != nil {
-		y.Parent = x
+		y.SetParent(x)
 	}
 }
 
-func SetRight(x, y *Node) {
-	x.Right = y
+func SetRight(x, y Node) {
+	x.SetRight(y)
 	if y != nil {
-		y.Parent = x
+		y.SetParent(x)
 	}
 }
 

@@ -9,7 +9,7 @@ import (
 )
 
 func TestBST(t *testing.T) {
-	var r *Node
+	var r Node
 
 	ks := []Key{4, 3, 1, 2, 8, 7, 16, 10, 9, 14}
 
@@ -39,26 +39,26 @@ func TestBST(t *testing.T) {
 	assert.Equal(t, postOrder, a)
 
 	min := Min(r)
-	assert.Equal(t, 1, min.Key)
+	assert.Equal(t, 1, min.Key())
 
 	max := Max(r)
-	assert.Equal(t, 16, max.Key)
+	assert.Equal(t, 16, max.Key())
 
 	n := Search(r, 2)
 	n = Succ(n)
-	assert.Equal(t, 3, n.Key)
+	assert.Equal(t, 3, n.Key())
 
 	n = Search(r, 8)
 	n = Succ(n)
-	assert.Equal(t, 9, n.Key)
+	assert.Equal(t, 9, n.Key())
 
 	n = Search(r, 16)
 	n = Pred(n)
-	assert.Equal(t, 14, n.Key)
+	assert.Equal(t, 14, n.Key())
 
 	n = Search(r, 9)
 	n = Pred(n)
-	assert.Equal(t, 8, n.Key)
+	assert.Equal(t, 8, n.Key())
 
 	x := ReConstructFromPreOrderAndInOrder(preOrder, inOrder)
 	a = nil
