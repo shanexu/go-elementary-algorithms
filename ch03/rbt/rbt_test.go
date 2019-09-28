@@ -27,4 +27,11 @@ func TestRBT(t *testing.T) {
 		a = append(a, k)
 	})
 	assert.Equal(t, []Key{1, 2, 3, 4, 7, 8, 9, 10, 14, 16}, a)
+
+	r = RightRotate(r, r)
+	a = nil
+	InOrderWalk(r, func(k Key) {
+		a = append(a, k)
+	})
+	assert.Equal(t, []Key{1, 2, 3, 4, 7, 8, 9, 10, 14, 16}, a)
 }
